@@ -1,0 +1,23 @@
+﻿@model Rocosa_Modelos.Venta
+
+
+
+<div class="text-center">
+
+    @if(Model !=null)
+    {
+        <h1 class="text-info">Venta Creada</h1>
+        <p>Venta @Model.Id Creada Satisfactoriamente!</p>
+    }
+    else
+    {
+        <h1 class="text-info">Confirmacion</h1>
+        <p>Hemos recibido tu Consulta. Un miembro de nuestro equipo se contactara pronto contigo</p>    
+    }
+
+    
+    <img src="/imagenes/patio.jpg" width="80%" />
+</div>
+
+
+
