@@ -5,6 +5,7 @@ using Rocosa_AccesoDatos.Datos;
 using Rocosa_AccesoDatos.Datos.Repositorio.IRepositorio;
 using Rocosa_Modelos;
 using Rocosa_Utilidades;
+using Syncfusion.EJ2.Linq;
 
 namespace Rocosa.Controllers
 {
@@ -20,7 +21,7 @@ namespace Rocosa.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<Categoria> lista = _catRepo.ObtenerTodos();
+            IEnumerable<Categoria> lista = _catRepo.ObtenerTodos().OrderBy(c=>c.MostrarOrden);
 
             return View(lista);
         }
@@ -35,6 +36,10 @@ namespace Rocosa.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Crear(Categoria categoria)
         {
+            if(_catRepo.ExisteNumeroOrden(categoria.MostrarOrden))
+            {
+                ModelState.AddModelError("MostrarOrden", "Ya existe una categoría con este número de orden.");
+            }
             if (ModelState.IsValid)
             {
                 _catRepo.Agregar(categoria);
@@ -68,6 +73,17 @@ namespace Rocosa.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Editar(Categoria categoria)
         {
+            var categoriaExistente = _catRepo.ObtenerPorId(categoria.Id);
+            if (categoriaExistente != null)
+            {
+                if(categoriaExistente.MostrarOrden != categoria.MostrarOrden)
+                {
+                    if (_catRepo.ExisteNumeroOrden(categoria.MostrarOrden))
+                    {
+                        ModelState.AddModelError("MostrarOrden", "Ya existe una categoría con este número de orden.");
+                    }
+                }
+            }
             if (ModelState.IsValid)
             {
                 _catRepo.Actualizar(categoria);
@@ -77,8 +93,6 @@ namespace Rocosa.Controllers
             }
             TempData[WC.Error] = "Error al Actualizar nueva Categoria";
             return View(categoria);
-
-
         }
 
         // Get Eliminar

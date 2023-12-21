@@ -18,7 +18,7 @@ namespace Rocosa_Utilidades
         public Task SendEmailAsync(string email, string subject, string htmlMessage)
         {
             var client = new SendGridClient(SendGridSecret);
-            var from = new EmailAddress("support@baezstone.com");
+            var from = new EmailAddress("valentinaguillen1406@gmail.com");
             var to = new EmailAddress(email);
             var msg = MailHelper.CreateSingleEmail(from, to, subject, "", htmlMessage);
 

@@ -62,7 +62,7 @@
                             </li>
                         }
 
-                        <li>
+                        @* <li>
                             @if(HttpContextAccessor.HttpContext.Session.Get<List<CarroCompra>>(WC.SessionCarroCompras) !=null)
                             {
                                 <a asp-action="Index" asp-controller="Carro" class="nav-link">
@@ -80,7 +80,7 @@
                                 </a>
 
                             }
-                        </li>
+                        </li> *@
                     </ul>
                 </div>
             </div>
@@ -95,7 +95,7 @@
 
     <footer class="border-top footer bg-dark">
         <div class="container text-white">
-            &copy; 2021 - Rocosa
+            &copy; 2023 - Rocosa
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

@@ -51,10 +51,8 @@
           <e-grid-column field="EstadoVenta" headerText="Estado" textAlign="Right"></e-grid-column> 
           <e-grid-column field="FechaVenta" headerText="Fecha" customFormat="@(new { type="date", format="MM/dd/yyyy"})"  textAlign="Right"></e-grid-column>
       
-          <e-grid-column field="Id" headerText="" width="70" 
-              template="<a rel='nofollow' href='Venta/Detalle/${Id}' class='btn btn-primary'>
-               <i class='fas fa-list'></i></a>"></e-grid-column>
-
-      </e-grid-columns>
+          @* <e-grid-column field="Id" headerText="" width="70" template="<a rel='nofollow' href='Venta/Detalle/${Id}' class='btn btn-primary'>
+          <i class='fas fa-list'></i></a>"></e-grid-column> *@
+        </e-grid-columns>
     </ejs-grid>
 </div>
