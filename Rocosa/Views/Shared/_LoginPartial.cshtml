@@ -45,5 +45,24 @@ else
     <li class="nav-item">
         <a class="nav-link" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
     </li>
+        <li>
+            @if (HttpContextAccessor.HttpContext.Session.Get<List<CarroCompra>>(WC.SessionCarroCompras) != null)
+            {
+                <a asp-action="Index" asp-controller="Carro" class="nav-link">
+                    @{
+                        var count = HttpContextAccessor.HttpContext.Session.Get<List<CarroCompra>>(WC.SessionCarroCompras).Count();
+
+                    }
+                    <i class="fas fa-shopping-cart"></i> &nbsp; (@count)
+                </a>
+            }
+            else
+            {
+                <a href="#" class="nav-link">
+                    <i class="fas fa-shopping-cart"></i> &nbsp; (0)
+                </a>
+
+            }
+        </li>
 }
 </ul>
