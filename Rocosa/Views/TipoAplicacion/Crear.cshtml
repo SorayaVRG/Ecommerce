@@ -1,44 +1,52 @@
-﻿
-@model Rocosa_Modelos.TipoAplicacion
+﻿@model Rocosa_Modelos.TipoAplicacion
 
 @{
     ViewData["Title"] = "Crear";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<script>
+    function validarNombre(input) {
+        var valor = input.value.trim();
+        var mensajeError = document.getElementById("mensajeError");
+
+        if (valor === "") {
+            mensajeError.innerText = "El nombre no puede estar vacío.";
+        } else {
+            mensajeError.innerText = "";
+        }
+    }
+</script>
+
 <form method="post" asp-action="Crear">
-    <div class="border p-3 ">
+    <div class="border p-4 rounded bg-light">
 
-        <div asp-validation-summary="ModelOnly" class="text-danger">
-
-        </div>
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
 
         <div class="form-group row">
-            <h2 class="text-info pl-3">Nuevo Tipo Aplicacion</h2>
-        </div> 
-                 
+            <h2 class="text-info pl-3">Nuevo Tipo Aplicación</h2>
+        </div>
+
         <div class="container">
-            <div class="row">
+            <div class="row mb-3">
                 <div class="col-md-6">
                     <label asp-for="Nombre" class="form-label">Nombre</label>
-                    <input asp-for="Nombre" class="form-control"/>
+                    <input asp-for="Nombre" class="form-control" oninput="validarNombre(this)" />
+                    <span id="mensajeError" class="text-danger"></span>
                     <span asp-validation-for="Nombre" class="text-danger"></span>
                 </div>
             </div>
-           
-            <br />
+
             <div class="d-grid gap-2 d-md-block">
+                <a asp-controller="TipoAplicacion" asp-action="Index" class="btn btn-secondary">Regresar</a>
                 <button type="submit" class="btn btn-primary">Crear Nuevo</button>
-                <a asp-controller="TipoAplicacion" asp-action="Index" class="btn btn-success">Regresar</a>
             </div>
-
         </div>
-
-
-    </div>   
-
+    </div>
 </form>
 
 @section Scripts {
-    @{ <partial name="_ValidationScriptsPartial" /> }
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
 }

@@ -6,7 +6,7 @@
     <div class="backgroundWhiteBorder">
         <div class="container">
             <div class="card">
-                <div class="card-header bg-dark text-light ml-0 row container">
+                <div class="card-header bg-dark text-light ml-0 row container" style="--bs-gutter-x:0">
                     <div class="col-6">
                         <i class="fa fa-shopping-cart"></i> &nbsp;
                         Resumen de la Orden
@@ -91,7 +91,7 @@
                                                 <h6 class="my-0">@Model.ProductoLista[i].NombreProducto</h6>
                                                 @if(User.IsInRole(WC.AdminRole))
                                                 {
-                                                   <small class="text-muted">m &sup2: @Model.ProductoLista[i].TempMetroCuadrado</small>
+                                                   <small class="text-muted">Cantidad: @Model.ProductoLista[i].TempMetroCuadrado</small>
                                                 }
                                                 else
                                                 {
@@ -101,7 +101,7 @@
                                             </div>
                                             @if(User.IsInRole(WC.AdminRole))
                                             {
-                                              <span class="text-muted">$@(Model.ProductoLista[i].Precio * Model.ProductoLista[i].TempMetroCuadrado)</span>    
+                                                    <span class="text-muted">@String.Format("{0:0.00}", Model.ProductoLista[i].Precio * Model.ProductoLista[i].TempMetroCuadrado)</span>
                                             }
                                             </li>
 
@@ -110,8 +110,8 @@
                                         @if(User.IsInRole(WC.AdminRole))
                                         {
                                             <li class="list-group-item d-flex justify-content-between bg-white">
-                                                <small class="text-info"> Total(USD)</small>
-                                                <strong class="text-info">$@totalOrden</strong>
+                                                <small class="text-info"> Total(PEN)</small>
+                                                <strong class="text-info">S/.@String.Format("{0:0.00}", totalOrden)</strong>
                                             </li>
                                         }
 
